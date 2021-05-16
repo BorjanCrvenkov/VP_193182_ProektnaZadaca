@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VP_193182_ProektnaZadaca.Pictures;
 
 namespace VP_193182_ProektnaZadaca
 {
@@ -28,11 +29,12 @@ namespace VP_193182_ProektnaZadaca
         private void btnInfo_Click(object sender, EventArgs e)
         {
             Info forma = new Info();
+
         }
 
         private void btnStartGame_Click(object sender, EventArgs e)
         {
-            
+            BlackJack blackjack = new BlackJack();
         }
     }
 }

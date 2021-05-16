@@ -15,6 +15,7 @@ namespace VP_193182_ProektnaZadaca
         public Info()
         {
             InitializeComponent();
+            DialogResult = DialogResult.OK;
         }
 
         private void button1_Click(object sender, EventArgs e)
