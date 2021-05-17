@@ -29,12 +29,13 @@ namespace VP_193182_ProektnaZadaca
         private void btnInfo_Click(object sender, EventArgs e)
         {
             Info forma = new Info();
-
+            forma.ShowDialog();
         }
 
         private void btnStartGame_Click(object sender, EventArgs e)
         {
             BlackJack blackjack = new BlackJack();
+            blackjack.ShowDialog();
         }
     }
 }

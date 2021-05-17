@@ -10,6 +10,7 @@ namespace VP_193182_ProektnaZadaca
     public class Deck
     {
         public Card[] deck { get; set; }
+        Random random = new Random();
 
         public Deck()
         {
@@ -43,17 +44,9 @@ namespace VP_193182_ProektnaZadaca
             }
                 
         }
-
-        public void shuffle()
+        public Card generateCard()
         {
-            Random rnd = new Random();
-            for (int i = 51; i > 0; i--)
-            {
-                int random = rnd.Next(0, 52);
-                Card tmp = deck[i];
-                deck[i] = deck[random];
-                deck[random] = tmp;
-            }
+            return deck[random.Next(0, 52)];
         }
     }
 }

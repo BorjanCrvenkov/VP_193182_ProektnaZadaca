@@ -22,17 +22,25 @@ namespace VP_193182_ProektnaZadaca
         public Image image { get; set; }
         public Image flippedImage { get; set; }
 
+        public bool isAce { get; set; }
+
         public Card(SUIT suit, int value, Image image)
         {
             this.suit = suit;
             this.image = image;
-            if (value > 10)
+            if(value == 11)
+            {
+                value = 11;
+                isAce = true;
+            }else if (value > 10)
             {
                 this.value = 10;
+                isAce = false;
             }
             else
             {
                 this.value = value;
+                isAce = false;
             }
         }
     }
