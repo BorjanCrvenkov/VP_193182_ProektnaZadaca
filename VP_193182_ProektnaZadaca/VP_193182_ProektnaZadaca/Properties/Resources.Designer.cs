@@ -613,6 +613,16 @@ namespace VP_193182_ProektnaZadaca.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Blackjack_EndGame {
+            get {
+                object obj = ResourceManager.GetObject("Blackjack_EndGame", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BlueCardFlipped {
             get {
                 object obj = ResourceManager.GetObject("BlueCardFlipped", resourceCulture);

@@ -48,26 +48,33 @@ namespace VP_193182_ProektnaZadaca
     {
         public override int getTotalValue()
         {
-            int total = 0;
+            int total = 0, count = 0;
+            Card []aces = new Card[5];
             for(int i = 0; i < hand.Count; i++)
             {
-
                 if (hand[i].isAce)
                 {
-                    if (total > 11)
-                    {
-                        total += 1;
-                    }
-                    else
-                    {
-                        total += 11;
-                    }
+                    aces[count] = hand[i];
+                    count++;
                 }
                 else
                 {
                     total += hand[i].value;
                 }
             }
+
+            for(int i=0; i < count; i++)
+            {
+                if (total > 11)
+                {
+                    total += 1;
+                }
+                else if (total < 11)
+                {
+                    total += 11;
+                }
+            }
+
             return total;
 
         }
@@ -84,10 +91,10 @@ namespace VP_193182_ProektnaZadaca
 
         public bool Blackjack()
         {
-            if(hand[0].value == 10 && hand[1].value == 11)
+            if(hand[0].isAce && hand[1].value == 10)
             {
                 return true;
-            }else if (hand[1].value == 10 && hand[0].value == 11)
+            }else if (hand[0].value == 10 && hand[1].isAce)
             {
                 return true;
             }
@@ -100,28 +107,35 @@ namespace VP_193182_ProektnaZadaca
 
         public override int getTotalValue()
         {
-            int total = 0;
+            int total = 0,count = 0;
             if (stand)
             {
+                Card[] aces = new Card[5];
                 for (int i = 0; i < hand.Count; i++)
                 {
-
                     if (hand[i].isAce)
                     {
-                        if (total > 11)
-                        {
-                            total += 1;
-                        }
-                        else
-                        {
-                            total += 11;
-                        }
+                        aces[count] = hand[i];
+                        count++;
                     }
                     else
                     {
                         total += hand[i].value;
                     }
                 }
+
+                for (int i = 0; i < count; i++)
+                {
+                    if (total > 11)
+                    {
+                        total += 1;
+                    }
+                    else if (total < 11)
+                    {
+                        total += 11;
+                    }
+                }
+
             }
             else
             {
