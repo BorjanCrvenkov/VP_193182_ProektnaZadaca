@@ -44,6 +44,18 @@ namespace VP_193182_ProektnaZadaca
             }
                 
         }
+
+        public void shuffle()
+        {
+            Random rnd = new Random();
+            for (int i = 51; i > 0; i--)
+            {
+                int random = rnd.Next(0, 52);
+                Card tmp = deck[i];
+                deck[i] = deck[random];
+                deck[random] = tmp;
+            }
+        }
         public Card generateCard()
         {
             return deck[random.Next(0, 52)];

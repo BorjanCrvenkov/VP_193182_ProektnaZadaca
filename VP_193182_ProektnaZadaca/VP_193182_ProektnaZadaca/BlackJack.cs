@@ -9,109 +9,90 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace VP_193182_ProektnaZadaca.Pictures
 {
     public partial class BlackJack : Form
     {
-        public bool dealer { get; set; }
+        public bool dealer = true;
 
         double bet, balance;
+
         Deck deck;
         PlayerHand playerHand;
         DealerHand dealerHand;
-        int dealerX, dealerY, playerX, playerY;
 
+        int dealerX, dealerY, playerX, playerY;
+        int cardHeight = 170;
+        int cardWidth = 90;
+
+        Image flipped = Image.FromFile(@"Pictures\Cards\RedCardFlipped.png");
+        
+
+        //MAIN FUNCTIONS
         public BlackJack()
         {
             InitializeComponent();
-            dealer = true;
+
             this.BackgroundImage = Properties.Resources.BlackJack_Background;
             this.BackgroundImageLayout = ImageLayout.Stretch;
+
             buttonControler();
+
             bet = 0;
             balance = 1000;
+
             DoubleBuffered = true;
+            cardPositionReset();
         }
 
+        //BUTTON DEAL
         private void btnDeal_Click(object sender, EventArgs e)
         {
-            Graphics g = this.CreateGraphics();
             btnDeal.Enabled = false;
             buttonControler();
 
             deck = new Deck();
+            deck.shuffle();
+
             playerHand = new PlayerHand();
             dealerHand = new DealerHand(false);
 
-            for (int i = 0; i < 2; i++)
-            {
-                playerHand.addCard(deck.generateCard());
-                dealerHand.addCard(deck.generateCard());
-            }
+            addAndDrawCard("player", false);
+            Thread.Sleep(300);
 
-            Image flipped = Image.FromFile(@"Pictures\Cards\RedCardFlipped.png");
+            addAndDrawCard("dealer", false);
 
-            playerX = 460;
-            playerY = 370;
+            addAndDrawCard("player", false);
+            Thread.Sleep(300);
 
-            g.DrawImage(playerHand.getCard(0).image, playerX, playerY,90,170);
-            handValueUpdate(false);
-            Thread.Sleep(100);
-            playerX += 95;
-            g.DrawImage(playerHand.getCard(1).image, playerX , playerY,90,170);
-            handValueUpdate(false);
-            Thread.Sleep(100);
+            addAndDrawCard("dealer", true);
 
-            dealerX = 10;
-            dealerY = 250;
-
-            g.DrawImage(dealerHand.getCard(0).image, dealerX, dealerY,90,170);
-            handValueUpdate(false);
-            Thread.Sleep(100);
-            dealerX += 95;
-            g.DrawImage(flipped, dealerX, dealerY, 90, 170);
-            handValueUpdate(false);
-            Thread.Sleep(100);
-
-            handValueUpdate(false);
-            if (playerHand.getTotalValue() == 21)
-            {
-                MessageBox.Show("Blackjack! You win!");
-                balance += bet + (bet * 0.5);
-                newDeal();
-            }
-            else if (dealerHand.Blackjack() && playerHand.getTotalValue() == 21)
-            {
-                MessageBox.Show("Blackjack! You win!");
-                balance += bet + (bet * 0.5);
-                newDeal();
-            }
-            else if (dealerHand.Blackjack())
-            {
-                MessageBox.Show("Blackjack! The dealer wins!");
-                g.DrawImage(dealerHand.getCard(1).image, dealerX, dealerY, 90, 170);
-                handValueUpdate(false);
-                Thread.Sleep(200);
-                newDeal();
-            }
+            dealState();
         }
 
-        private void buttonControler()
+        //NEW DEAL
+        private void newDeal()
         {
-            if(btnDeal.Enabled == true)
-            {
-                btnHit.Enabled = false;
-                btnStand.Enabled = false;
-                btnDouble.Enabled = false;
-            }
-            else
-            {
-                btnHit.Enabled = true;
-                btnStand.Enabled = true;
-                btnDouble.Enabled = true;
-            }
+            lbDealerHand.Text = "Dealer's hand: 0";
+            lbPlayerHand.Text = "Player's hand: 0";
+            tbBet.Text = "Your bet: 0";
+
+            bet = 0;
+            moneyStatus();
+
+            Graphics g = this.CreateGraphics();
+
+            btnDeal.Enabled = true;
+            buttonControler();
+
+            g.Clear(Color.Crimson);
+            this.BackgroundImage = Properties.Resources.BlackJack_Background;
+
+            cardPositionReset();
         }
 
+        //BUTTON HIT
         private void btnHit_Click(object sender, EventArgs e)
         {
             hit();
@@ -123,37 +104,20 @@ namespace VP_193182_ProektnaZadaca.Pictures
 
             playerHand.addCard(deck.generateCard());
             playerX += 95;
+
             g.DrawImage(playerHand.getCard(playerHand.getCardCount() - 1).image, playerX, playerY, 90, 170);
-            handValueUpdate(false);
-            Thread.Sleep(100);
+            handValueUpdate("player");
             if (playerHand.getTotalValue() > 21)
             {
                 MessageBox.Show("You bust, dealer wins!");
                 newDeal();
             }
-            
-            
         }
 
+        //BUTTON STAND
         private void btnStand_Click(object sender, EventArgs e)
         {
             stand();
-        }
-
-        private void handValueUpdate(bool newDeal)
-        {
-            if (newDeal)
-            {
-                lbDealerHand.Text = "Dealer's hand: 0";
-                lbPlayerHand.Text = "Player's hand: 0";
-                tbBet.Text = "Your bet: 0";
-                bet = 0;
-            }
-            else
-            {
-                lbDealerHand.Text = "Dealer's hand: " + dealerHand.getTotalValue();
-                lbPlayerHand.Text = "Player's hand: " + playerHand.getTotalValue();
-            }
         }
 
         private void stand()
@@ -162,9 +126,7 @@ namespace VP_193182_ProektnaZadaca.Pictures
             dealerHand.stand = true;
 
             g.DrawImage(dealerHand.getCard(1).image, dealerX, dealerY, 90, 170);
-            handValueUpdate(false);
-            Thread.Sleep(200);
-            handValueUpdate(false);
+            handValueUpdate("dealer");
 
             while (true)
             {
@@ -173,33 +135,204 @@ namespace VP_193182_ProektnaZadaca.Pictures
                     break;
                 }
                 dealerHand.addCard(deck.generateCard());
-                handValueUpdate(false);
+                handValueUpdate("dealer");
                 dealerX += 95;
-                g.DrawImage(dealerHand.getCard(dealerHand.getCardCount() - 1).image, dealerX, dealerY, 90, 170);
-                Thread.Sleep(100);
+                Thread.Sleep(300);
+                g.DrawImage(dealerHand.getCard(dealerHand.getCardCount() - 1).image, dealerX, dealerY, 90, 170);;
             }
+            standState();
+        }
 
+        //STAND STATE
+        private void standState()
+        {
             if (playerHand.getTotalValue() == dealerHand.getTotalValue())
             {
                 MessageBox.Show("It's a draw. Nobody wins!");
                 balance += bet;
                 newDeal();
-            }else if (dealerHand.getTotalValue() > 21){
+            }
+            else if (dealerHand.getTotalValue() > 21)
+            {
                 MessageBox.Show("The dealer busts, You win!");
                 balance += bet * 2;
                 newDeal();
-            }else if (dealerHand.getTotalValue() > playerHand.getTotalValue())
+            }
+            else if (dealerHand.getTotalValue() > playerHand.getTotalValue())
             {
                 MessageBox.Show("The dealer has a higher score than you. The dealer wins!");
                 newDeal();
-            }else if (dealerHand.getTotalValue() < playerHand.getTotalValue())
+            }
+            else if (dealerHand.getTotalValue() < playerHand.getTotalValue())
             {
                 MessageBox.Show("You have a higher score than the dealer. You win!");
                 balance += bet * 2;
                 newDeal();
             }
-            
+        }
 
+        //BUTTON DOUBLE       
+        private void btnDouble_Click(object sender, EventArgs e)
+        {
+            if (balance >= bet)
+            {
+                balance -= bet;
+                bet *= 2;
+                moneyStatus();
+                DOUBLE();
+                handValueUpdate("player");
+            }
+        }
+
+        private void DOUBLE()
+        {
+            Graphics g = this.CreateGraphics();
+
+            btnDouble.Enabled = false;
+
+            addAndDrawCard("player", false);
+            Thread.Sleep(300);
+            if (playerHand.getTotalValue() > 21)
+            {
+                MessageBox.Show("You bust, dealer wins!");
+                newDeal();
+            }
+            else
+            {
+                stand();
+            }
+        }
+
+        //SUPPORTING FUNCTIONS
+        //ADD AND DRAW CARD
+        private void addAndDrawCard(String playerOrDealer, bool flipped)
+        {
+            Graphics g = this.CreateGraphics();
+            Card card = deck.generateCard();
+
+            if (playerOrDealer.Equals("player"))
+            {
+                playerHand.addCard(card);
+                handValueUpdate("player");
+                playerX += 95;
+                g.DrawImage(card.image, playerX, playerY, cardWidth, cardHeight);
+            }
+            else
+            {
+                dealerHand.addCard(card);
+                handValueUpdate("dealer");
+                dealerX += 95;
+                if (flipped)
+                {
+                    g.DrawImage(this.flipped, dealerX, dealerY, cardWidth, cardHeight);
+                }
+                else
+                {
+                    g.DrawImage(card.image, dealerX, dealerY, cardWidth, cardHeight);
+                }
+                Thread.Sleep(300);
+            }
+        }
+
+        //STATE AFTER THE DEAL DOES ANYONE HAVE BLACKJACK?
+        private void dealState()
+        {
+            Graphics g = this.CreateGraphics();
+
+            if (playerHand.getTotalValue() == 21)
+            {
+                MessageBox.Show("Blackjack! You win!");
+                g.DrawImage(dealerHand.getCard(1).image, dealerX, dealerY, cardWidth, cardHeight);
+                balance += bet + (bet * 0.5);
+                newDeal();
+            }
+            else if (dealerHand.Blackjack() && playerHand.getTotalValue() == 21)
+            {
+                MessageBox.Show("Blackjack! You win!");
+                g.DrawImage(dealerHand.getCard(1).image, dealerX, dealerY, cardWidth, cardHeight);
+                balance += bet + (bet * 0.5);
+                newDeal();
+            }
+            else if (dealerHand.Blackjack())
+            {
+                MessageBox.Show("Blackjack! The dealer wins!");
+                g.DrawImage(dealerHand.getCard(1).image, dealerX, dealerY, cardWidth, cardHeight);
+                newDeal();
+            }
+        }
+
+        //HAND VALUE UPDATE 
+        private void handValueUpdate(string playerOrDealer)
+        {
+            if (playerOrDealer.Equals("player"))
+            {
+                lbPlayerHand.Text = "Player's hand: " + playerHand.getTotalValue();
+            }
+            else
+            {
+                if(dealerHand.getCard(0)!= null)
+                {
+                    lbDealerHand.Text = "Dealer's hand: " + dealerHand.getTotalValue();  
+                }
+            }
+
+        }
+
+
+        //BUTTON CONTROLER IF A DEAL IS ACTIVE YOU CAN PLAY HIT,STAND OR DOUBLE IF NOT YOU CAN ONLY USE NEW DEAL
+        private void buttonControler()
+        {
+            if (btnDeal.Enabled == true)
+            {
+                btnHit.Enabled = false;
+                btnStand.Enabled = false;
+                btnDouble.Enabled = false;
+
+                pbChip5.Enabled = true;
+                pbChip10.Enabled = true;
+                pbChip25.Enabled = true;
+                pbChip50.Enabled = true;
+                pbChip100.Enabled = true;
+                pbChip500.Enabled = true;
+                pbChip1000.Enabled = true;
+            }
+            else
+            {
+                btnHit.Enabled = true;
+                btnStand.Enabled = true;
+                btnDouble.Enabled = true;
+
+                pbChip5.Enabled = false;
+                pbChip10.Enabled = false;
+                pbChip25.Enabled = false;
+                pbChip50.Enabled = false;
+                pbChip100.Enabled = false;
+                pbChip500.Enabled = false;
+                pbChip1000.Enabled = false;
+            }
+        }
+
+        // CHIPS AND MONEY STATUS
+
+        private void raiseBet(int value)
+        {
+            if (balance >= value)
+            {
+                bet += value;
+                balance -= value;
+            }
+            moneyStatus();
+        }
+
+        private void lowerBet(int value)
+        {
+
+            if (bet >= value)
+            {
+                bet -= value;
+                balance += value;
+            }
+            moneyStatus();
         }
 
         private void moneyStatus()
@@ -213,22 +346,14 @@ namespace VP_193182_ProektnaZadaca.Pictures
             MouseEventArgs mouse = (MouseEventArgs)e;
             if (mouse.Button == MouseButtons.Left)
             {
-                if (balance >= 5)
-                {
-                    bet += 5;
-                    balance -= 5;
-                }
+                raiseBet(5);
 
             }
             else
             {
-                if (bet >= 5)
-                {
-                    bet -= 5;
-                    balance += 5;
-                }
+                lowerBet(5);
             }
-            moneyStatus();
+
 
         }
 
@@ -237,22 +362,13 @@ namespace VP_193182_ProektnaZadaca.Pictures
             MouseEventArgs mouse = (MouseEventArgs)e;
             if (mouse.Button == MouseButtons.Left)
             {
-                if (balance >= 10)
-                {
-                    bet += 10;
-                    balance -= 10;
-                }
+                raiseBet(10);
 
             }
             else
             {
-                if (bet >= 10)
-                {
-                    bet -= 10;
-                    balance += 5;
-                }
+                lowerBet(10);
             }
-            moneyStatus();
         }
 
         private void pbChip25_Click(object sender, EventArgs e)
@@ -260,22 +376,13 @@ namespace VP_193182_ProektnaZadaca.Pictures
             MouseEventArgs mouse = (MouseEventArgs)e;
             if (mouse.Button == MouseButtons.Left)
             {
-                if (balance >= 25)
-                {
-                    bet += 25;
-                    balance -= 25;
-                }
+                raiseBet(25);
 
             }
             else
             {
-                if (bet >= 25)
-                {
-                    bet -= 25;
-                    balance += 25;
-                }
+                lowerBet(25);
             }
-            moneyStatus();
         }
 
         private void pbChip50_Click(object sender, EventArgs e)
@@ -283,22 +390,13 @@ namespace VP_193182_ProektnaZadaca.Pictures
             MouseEventArgs mouse = (MouseEventArgs)e;
             if (mouse.Button == MouseButtons.Left)
             {
-                if (balance >= 50)
-                {
-                    bet += 50;
-                    balance -= 50;
-                }
+                raiseBet(50);
 
             }
             else
             {
-                if (bet >= 50)
-                {
-                    bet -= 50;
-                    balance += 50;
-                }
+                lowerBet(50);
             }
-            moneyStatus();
         }
 
         private void pbChip100_Click(object sender, EventArgs e)
@@ -306,22 +404,13 @@ namespace VP_193182_ProektnaZadaca.Pictures
             MouseEventArgs mouse = (MouseEventArgs)e;
             if (mouse.Button == MouseButtons.Left)
             {
-                if (balance >= 100)
-                {
-                    bet += 100;
-                    balance -= 100;
-                }
+                raiseBet(100);
 
             }
             else
             {
-                if (bet >= 100)
-                {
-                    bet -= 100;
-                    balance += 100;
-                }
+                lowerBet(100);
             }
-            moneyStatus();
         }
 
         private void pbChip500_Click(object sender, EventArgs e)
@@ -329,38 +418,13 @@ namespace VP_193182_ProektnaZadaca.Pictures
             MouseEventArgs mouse = (MouseEventArgs)e;
             if (mouse.Button == MouseButtons.Left)
             {
-                if (balance >= 500)
-                {
-                    bet += 500;
-                    balance -= 500;
-                }
+                raiseBet(500);
 
             }
             else
             {
-                if (bet >= 500)
-                {
-                    bet -= 500;
-                    balance += 500;
-                }
+                lowerBet(500);
             }
-            moneyStatus();
-        }
-
-        private void btnDouble_Click(object sender, EventArgs e)
-        {
-            if (balance >= bet)
-            {
-                balance -= bet;
-                bet *= 2;
-                moneyStatus();
-                DOUBLE();
-            }
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void pbChip1000_Click(object sender, EventArgs e)
@@ -368,68 +432,32 @@ namespace VP_193182_ProektnaZadaca.Pictures
             MouseEventArgs mouse = (MouseEventArgs)e;
             if (mouse.Button == MouseButtons.Left)
             {
-                if (balance >= 1000)
-                {
-                    bet += 1000;
-                    balance -= 1000;
-                }
+                raiseBet(1000);
 
             }
             else
             {
-                if (bet >= 1000)
-                {
-                    bet -= 1000;
-                    balance += 1000;
-                }
+                lowerBet(1000);
             }
-            moneyStatus();
         }
 
-        
-
-        
-
-        private void DOUBLE()
+        //CARD POSITION RESET
+        private void cardPositionReset()
         {
-            Graphics g = this.CreateGraphics();
+            playerX = 365;
+            playerY = 370;
 
-            btnDouble.Enabled = false;
-            playerHand.addCard(deck.generateCard());
-            playerX += 95;
-            g.DrawImage(playerHand.getCard(playerHand.getCardCount() - 1).image, playerX, playerY, 90, 170);
-            handValueUpdate(false);
-            Thread.Sleep(100);
-            handValueUpdate(false);
-
-            if (playerHand.getTotalValue() > 21)
-            {
-                MessageBox.Show("You bust, dealer wins!");
-                newDeal();
-            }
-            else
-            {
-                stand();
-            }
-
-
-
+            dealerX = -85;
+            dealerY = 250;
         }
 
-        private void newDeal()
+        //CLOSE GAME
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
-            moneyStatus();
-            Graphics g = this.CreateGraphics();
-
-            btnDeal.Enabled = true;
-            buttonControler();
-
-            g.Clear(Color.Crimson);
-            this.BackgroundImage = Properties.Resources.BlackJack_Background;
-            handValueUpdate(true);
-            
+            this.Close();
         }
 
+        //DEALER IMAGE CHANGE
         private void pbDealer_Click(object sender, EventArgs e)
         {
             if (dealer)
