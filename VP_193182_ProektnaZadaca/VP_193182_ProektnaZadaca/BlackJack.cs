@@ -76,7 +76,7 @@ namespace VP_193182_ProektnaZadaca.Pictures
         {
             lbDealerHand.Text = "Dealer's hand: 0";
             lbPlayerHand.Text = "Player's hand: 0";
-            tbBet.Text = "Your bet: 0";
+            tbBet.Text = "Your bet: $0";
 
             bet = 0;
             moneyStatus();
@@ -288,6 +288,7 @@ namespace VP_193182_ProektnaZadaca.Pictures
                 btnStand.Enabled = false;
                 btnDouble.Enabled = false;
 
+                btnAllIn.Enabled = true;
                 pbChip5.Enabled = true;
                 pbChip10.Enabled = true;
                 pbChip25.Enabled = true;
@@ -302,6 +303,7 @@ namespace VP_193182_ProektnaZadaca.Pictures
                 btnStand.Enabled = true;
                 btnDouble.Enabled = true;
 
+                btnAllIn.Enabled = false;
                 pbChip5.Enabled = false;
                 pbChip10.Enabled = false;
                 pbChip25.Enabled = false;
@@ -337,8 +339,8 @@ namespace VP_193182_ProektnaZadaca.Pictures
 
         private void moneyStatus()
         {
-            lbBalance.Text = "BALANCE: " + balance.ToString();
-            tbBet.Text = "Your bet: " + bet.ToString();
+            lbBalance.Text = "BALANCE: $" + balance.ToString();
+            tbBet.Text = "Your bet: $" + bet.ToString();
         }
 
         private void pbChip5_Click(object sender, EventArgs e)
@@ -427,6 +429,13 @@ namespace VP_193182_ProektnaZadaca.Pictures
             }
         }
 
+        private void btnAllIn_Click(object sender, EventArgs e)
+        {
+            bet += balance;
+            balance = 0;
+            moneyStatus();
+        }
+
         private void pbChip1000_Click(object sender, EventArgs e)
         {
             MouseEventArgs mouse = (MouseEventArgs)e;
@@ -444,8 +453,8 @@ namespace VP_193182_ProektnaZadaca.Pictures
         //CARD POSITION RESET
         private void cardPositionReset()
         {
-            playerX = 365;
-            playerY = 370;
+            playerX = 485;
+            playerY = 400;
 
             dealerX = -85;
             dealerY = 250;

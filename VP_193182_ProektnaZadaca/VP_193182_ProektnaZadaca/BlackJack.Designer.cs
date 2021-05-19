@@ -47,6 +47,7 @@ namespace VP_193182_ProektnaZadaca.Pictures
             this.pbChip50 = new System.Windows.Forms.PictureBox();
             this.pbChip5 = new System.Windows.Forms.PictureBox();
             this.pbChip25 = new System.Windows.Forms.PictureBox();
+            this.btnAllIn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbChip1000)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbDealer)).BeginInit();
@@ -68,14 +69,14 @@ namespace VP_193182_ProektnaZadaca.Pictures
             this.tbBet.ReadOnly = true;
             this.tbBet.Size = new System.Drawing.Size(234, 28);
             this.tbBet.TabIndex = 13;
-            this.tbBet.Text = "Your bet: 0";
+            this.tbBet.Text = "Your bet: $0";
             // 
             // btnHit
             // 
             this.btnHit.Font = new System.Drawing.Font("Arial Unicode MS", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHit.Location = new System.Drawing.Point(611, 683);
+            this.btnHit.Location = new System.Drawing.Point(779, 731);
             this.btnHit.Name = "btnHit";
-            this.btnHit.Size = new System.Drawing.Size(149, 69);
+            this.btnHit.Size = new System.Drawing.Size(158, 69);
             this.btnHit.TabIndex = 14;
             this.btnHit.Text = "HIT";
             this.btnHit.UseVisualStyleBackColor = true;
@@ -84,9 +85,9 @@ namespace VP_193182_ProektnaZadaca.Pictures
             // btnStand
             // 
             this.btnStand.Font = new System.Drawing.Font("Arial Unicode MS", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStand.Location = new System.Drawing.Point(842, 683);
+            this.btnStand.Location = new System.Drawing.Point(993, 731);
             this.btnStand.Name = "btnStand";
-            this.btnStand.Size = new System.Drawing.Size(149, 69);
+            this.btnStand.Size = new System.Drawing.Size(158, 69);
             this.btnStand.TabIndex = 15;
             this.btnStand.Text = "STAND";
             this.btnStand.UseVisualStyleBackColor = true;
@@ -95,9 +96,9 @@ namespace VP_193182_ProektnaZadaca.Pictures
             // btnDouble
             // 
             this.btnDouble.Font = new System.Drawing.Font("Arial Unicode MS", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDouble.Location = new System.Drawing.Point(1061, 683);
+            this.btnDouble.Location = new System.Drawing.Point(1198, 731);
             this.btnDouble.Name = "btnDouble";
-            this.btnDouble.Size = new System.Drawing.Size(149, 69);
+            this.btnDouble.Size = new System.Drawing.Size(158, 69);
             this.btnDouble.TabIndex = 16;
             this.btnDouble.Text = "DOUBLE";
             this.btnDouble.UseVisualStyleBackColor = true;
@@ -109,15 +110,15 @@ namespace VP_193182_ProektnaZadaca.Pictures
             this.lbBalance.Font = new System.Drawing.Font("Arial Unicode MS", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbBalance.Location = new System.Drawing.Point(12, 26);
             this.lbBalance.Name = "lbBalance";
-            this.lbBalance.Size = new System.Drawing.Size(146, 23);
+            this.lbBalance.Size = new System.Drawing.Size(156, 23);
             this.lbBalance.TabIndex = 17;
-            this.lbBalance.Text = "BALANCE: 1000";
+            this.lbBalance.Text = "BALANCE: $1000";
             // 
             // lbPlayerHand
             // 
             this.lbPlayerHand.AutoSize = true;
             this.lbPlayerHand.Font = new System.Drawing.Font("Arial Unicode MS", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPlayerHand.Location = new System.Drawing.Point(607, 399);
+            this.lbPlayerHand.Location = new System.Drawing.Point(775, 457);
             this.lbPlayerHand.Name = "lbPlayerHand";
             this.lbPlayerHand.Size = new System.Drawing.Size(117, 23);
             this.lbPlayerHand.TabIndex = 18;
@@ -148,7 +149,7 @@ namespace VP_193182_ProektnaZadaca.Pictures
             // 
             this.textBox1.Enabled = false;
             this.textBox1.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(16, 636);
+            this.textBox1.Location = new System.Drawing.Point(16, 669);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(550, 28);
@@ -158,7 +159,7 @@ namespace VP_193182_ProektnaZadaca.Pictures
             // pictureBox1
             // 
             this.pictureBox1.Image = global::VP_193182_ProektnaZadaca.Properties.Resources.Blackjack_EndGame;
-            this.pictureBox1.Location = new System.Drawing.Point(866, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(907, 12);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(396, 75);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -169,9 +170,9 @@ namespace VP_193182_ProektnaZadaca.Pictures
             // pbChip1000
             // 
             this.pbChip1000.Image = global::VP_193182_ProektnaZadaca.Properties.Resources.Chip1000;
-            this.pbChip1000.Location = new System.Drawing.Point(492, 683);
+            this.pbChip1000.Location = new System.Drawing.Point(670, 703);
             this.pbChip1000.Name = "pbChip1000";
-            this.pbChip1000.Size = new System.Drawing.Size(74, 69);
+            this.pbChip1000.Size = new System.Drawing.Size(95, 97);
             this.pbChip1000.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbChip1000.TabIndex = 21;
             this.pbChip1000.TabStop = false;
@@ -191,9 +192,9 @@ namespace VP_193182_ProektnaZadaca.Pictures
             // pbChip500
             // 
             this.pbChip500.Image = global::VP_193182_ProektnaZadaca.Properties.Resources.Chip500;
-            this.pbChip500.Location = new System.Drawing.Point(412, 683);
+            this.pbChip500.Location = new System.Drawing.Point(561, 703);
             this.pbChip500.Name = "pbChip500";
-            this.pbChip500.Size = new System.Drawing.Size(74, 69);
+            this.pbChip500.Size = new System.Drawing.Size(95, 97);
             this.pbChip500.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbChip500.TabIndex = 8;
             this.pbChip500.TabStop = false;
@@ -202,9 +203,9 @@ namespace VP_193182_ProektnaZadaca.Pictures
             // pbChip100
             // 
             this.pbChip100.Image = global::VP_193182_ProektnaZadaca.Properties.Resources.Chip100;
-            this.pbChip100.Location = new System.Drawing.Point(332, 683);
+            this.pbChip100.Location = new System.Drawing.Point(452, 703);
             this.pbChip100.Name = "pbChip100";
-            this.pbChip100.Size = new System.Drawing.Size(74, 69);
+            this.pbChip100.Size = new System.Drawing.Size(95, 97);
             this.pbChip100.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbChip100.TabIndex = 6;
             this.pbChip100.TabStop = false;
@@ -213,9 +214,9 @@ namespace VP_193182_ProektnaZadaca.Pictures
             // pbChip10
             // 
             this.pbChip10.Image = global::VP_193182_ProektnaZadaca.Properties.Resources.Chip10;
-            this.pbChip10.Location = new System.Drawing.Point(92, 683);
+            this.pbChip10.Location = new System.Drawing.Point(125, 703);
             this.pbChip10.Name = "pbChip10";
-            this.pbChip10.Size = new System.Drawing.Size(74, 69);
+            this.pbChip10.Size = new System.Drawing.Size(95, 97);
             this.pbChip10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbChip10.TabIndex = 5;
             this.pbChip10.TabStop = false;
@@ -224,9 +225,9 @@ namespace VP_193182_ProektnaZadaca.Pictures
             // pbChip50
             // 
             this.pbChip50.Image = global::VP_193182_ProektnaZadaca.Properties.Resources.Chip50;
-            this.pbChip50.Location = new System.Drawing.Point(252, 683);
+            this.pbChip50.Location = new System.Drawing.Point(343, 703);
             this.pbChip50.Name = "pbChip50";
-            this.pbChip50.Size = new System.Drawing.Size(74, 69);
+            this.pbChip50.Size = new System.Drawing.Size(95, 97);
             this.pbChip50.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbChip50.TabIndex = 4;
             this.pbChip50.TabStop = false;
@@ -235,9 +236,9 @@ namespace VP_193182_ProektnaZadaca.Pictures
             // pbChip5
             // 
             this.pbChip5.Image = global::VP_193182_ProektnaZadaca.Properties.Resources.Chip5;
-            this.pbChip5.Location = new System.Drawing.Point(12, 683);
+            this.pbChip5.Location = new System.Drawing.Point(16, 703);
             this.pbChip5.Name = "pbChip5";
-            this.pbChip5.Size = new System.Drawing.Size(74, 69);
+            this.pbChip5.Size = new System.Drawing.Size(95, 97);
             this.pbChip5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbChip5.TabIndex = 3;
             this.pbChip5.TabStop = false;
@@ -246,19 +247,31 @@ namespace VP_193182_ProektnaZadaca.Pictures
             // pbChip25
             // 
             this.pbChip25.Image = global::VP_193182_ProektnaZadaca.Properties.Resources.Chip25;
-            this.pbChip25.Location = new System.Drawing.Point(172, 683);
+            this.pbChip25.Location = new System.Drawing.Point(234, 703);
             this.pbChip25.Name = "pbChip25";
-            this.pbChip25.Size = new System.Drawing.Size(74, 69);
+            this.pbChip25.Size = new System.Drawing.Size(95, 97);
             this.pbChip25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbChip25.TabIndex = 2;
             this.pbChip25.TabStop = false;
             this.pbChip25.Click += new System.EventHandler(this.pbChip25_Click);
             // 
+            // btnAllIn
+            // 
+            this.btnAllIn.Font = new System.Drawing.Font("Arial Unicode MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAllIn.Location = new System.Drawing.Point(581, 668);
+            this.btnAllIn.Name = "btnAllIn";
+            this.btnAllIn.Size = new System.Drawing.Size(184, 28);
+            this.btnAllIn.TabIndex = 24;
+            this.btnAllIn.Text = "All-In";
+            this.btnAllIn.UseVisualStyleBackColor = true;
+            this.btnAllIn.Click += new System.EventHandler(this.btnAllIn_Click);
+            // 
             // BlackJack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1286, 773);
+            this.ClientSize = new System.Drawing.Size(1376, 812);
+            this.Controls.Add(this.btnAllIn);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.pbChip1000);
@@ -312,5 +325,6 @@ namespace VP_193182_ProektnaZadaca.Pictures
         private System.Windows.Forms.PictureBox pbChip1000;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnAllIn;
     }
 }
