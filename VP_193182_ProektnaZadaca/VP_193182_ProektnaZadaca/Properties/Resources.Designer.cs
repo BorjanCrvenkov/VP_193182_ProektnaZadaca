@@ -583,6 +583,36 @@ namespace VP_193182_ProektnaZadaca.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Arrow_left {
+            get {
+                object obj = ResourceManager.GetObject("Arrow_left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Arrow_right {
+            get {
+                object obj = ResourceManager.GetObject("Arrow_right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Blackjack {
+            get {
+                object obj = ResourceManager.GetObject("Blackjack", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap BlackJack_Background {
             get {
                 object obj = ResourceManager.GetObject("BlackJack_Background", resourceCulture);
@@ -616,26 +646,6 @@ namespace VP_193182_ProektnaZadaca.Properties {
         internal static System.Drawing.Bitmap Blackjack_EndGame {
             get {
                 object obj = ResourceManager.GetObject("Blackjack_EndGame", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap BlueCardFlipped {
-            get {
-                object obj = ResourceManager.GetObject("BlueCardFlipped", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Chip1 {
-            get {
-                object obj = ResourceManager.GetObject("Chip1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -743,19 +753,9 @@ namespace VP_193182_ProektnaZadaca.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Info_BlackJack {
+        internal static System.Drawing.Bitmap Info_icon {
             get {
-                object obj = ResourceManager.GetObject("Info_BlackJack", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Info_Dealers_Play {
-            get {
-                object obj = ResourceManager.GetObject("Info_Dealers_Play", resourceCulture);
+                object obj = ResourceManager.GetObject("Info_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -773,19 +773,9 @@ namespace VP_193182_ProektnaZadaca.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Info_The_Deal {
+        internal static System.Drawing.Bitmap Push {
             get {
-                object obj = ResourceManager.GetObject("Info_The_Deal", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Info_The_Play {
-            get {
-                object obj = ResourceManager.GetObject("Info_The_Play", resourceCulture);
+                object obj = ResourceManager.GetObject("Push", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -796,6 +786,26 @@ namespace VP_193182_ProektnaZadaca.Properties {
         internal static System.Drawing.Bitmap RedCardFlipped {
             get {
                 object obj = ResourceManager.GetObject("RedCardFlipped", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap You_lose {
+            get {
+                object obj = ResourceManager.GetObject("You_lose", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap You_win {
+            get {
+                object obj = ResourceManager.GetObject("You_win", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

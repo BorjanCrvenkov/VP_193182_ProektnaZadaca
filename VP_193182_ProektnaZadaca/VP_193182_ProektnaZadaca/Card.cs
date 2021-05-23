@@ -20,7 +20,6 @@ namespace VP_193182_ProektnaZadaca
         public SUIT suit{ get; set; }
         public int value { get; set; }
         public Image image { get; set; }
-        public Image flippedImg { get; set; }
 
         public bool isAce { get; set; }
 

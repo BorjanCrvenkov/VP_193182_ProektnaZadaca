@@ -49,7 +49,7 @@ namespace VP_193182_ProektnaZadaca
         public override int getTotalValue()
         {
             int total = 0, count = 0;
-            Card []aces = new Card[5];
+            Card []aces = new Card[10];
             for(int i = 0; i < hand.Count; i++)
             {
                 if (hand[i].isAce)
@@ -65,7 +65,7 @@ namespace VP_193182_ProektnaZadaca
 
             for(int i=0; i < count; i++)
             {
-                if (total > 11)
+                if (total >= 11)
                 {
                     total += 1;
                 }
@@ -126,7 +126,7 @@ namespace VP_193182_ProektnaZadaca
 
                 for (int i = 0; i < count; i++)
                 {
-                    if (total > 11)
+                    if (total >= 11)
                     {
                         total += 1;
                     }

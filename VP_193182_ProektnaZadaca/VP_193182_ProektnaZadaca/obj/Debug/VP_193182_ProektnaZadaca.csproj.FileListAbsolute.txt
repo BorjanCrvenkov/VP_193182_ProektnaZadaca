@@ -61,6 +61,6 @@ C:\Users\Borjan\Desktop\VP_193182_ProektnaZadaca\VP_193182_ProektnaZadaca\VP_193
 C:\Users\Borjan\Desktop\VP_193182_ProektnaZadaca\VP_193182_ProektnaZadaca\VP_193182_ProektnaZadaca\bin\Debug\Pictures\Cards\14D.png
 C:\Users\Borjan\Desktop\VP_193182_ProektnaZadaca\VP_193182_ProektnaZadaca\VP_193182_ProektnaZadaca\bin\Debug\Pictures\Cards\14H.png
 C:\Users\Borjan\Desktop\VP_193182_ProektnaZadaca\VP_193182_ProektnaZadaca\VP_193182_ProektnaZadaca\bin\Debug\Pictures\Cards\14S.png
-C:\Users\Borjan\Desktop\VP_193182_ProektnaZadaca\VP_193182_ProektnaZadaca\VP_193182_ProektnaZadaca\bin\Debug\Pictures\Cards\BlueCardFlipped.png
 C:\Users\Borjan\Desktop\VP_193182_ProektnaZadaca\VP_193182_ProektnaZadaca\VP_193182_ProektnaZadaca\bin\Debug\Pictures\Cards\RedCardFlipped.png
 C:\Users\Borjan\Desktop\VP_193182_ProektnaZadaca\VP_193182_ProektnaZadaca\VP_193182_ProektnaZadaca\obj\Debug\VP_193182_ProektnaZadaca.Pictures.BlackJack.resources
+C:\Users\Borjan\Desktop\VP_193182_ProektnaZadaca\VP_193182_ProektnaZadaca\VP_193182_ProektnaZadaca\obj\Debug\VP_193182_ProektnaZadaca.GameState.resources

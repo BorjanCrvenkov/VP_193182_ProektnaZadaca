@@ -118,6 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Arrow_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pictures\Arrow_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Arrow_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pictures\Arrow_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Blackjack" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pictures\Blackjack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="BlackJack_Background" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Pictures\BlackJack_Background.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -129,12 +138,6 @@
   </data>
   <data name="Blackjack_EndGame" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Pictures\Blackjack_EndGame.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="BlueCardFlipped" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Pictures\Cards\BlueCardFlipped.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Chip1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Pictures\Chips\Chip1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Chip10" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Pictures\Chips\Chip10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,23 +169,23 @@
   <data name="Form1_Cover" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Pictures\Form1_Cover.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Info_BlackJack" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Pictures\Info_BlackJack.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Info_Dealers_Play" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Pictures\Info_Dealers_Play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Info_icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pictures\Info_icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Info_Img" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Pictures\Info_Img.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Info_The_Deal" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Pictures\Info_The_Deal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Info_The_Play" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Pictures\Info_The_Play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Push" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pictures\Push.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RedCardFlipped" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Pictures\Cards\RedCardFlipped.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="You_lose" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pictures\You lose.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="You_win" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Pictures\You win.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="_10C" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Pictures\Cards\10C.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

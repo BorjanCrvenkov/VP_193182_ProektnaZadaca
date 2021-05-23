@@ -33,6 +33,7 @@ namespace VP_193182_ProektnaZadaca.Pictures
         public BlackJack()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
 
             this.BackgroundImage = Properties.Resources.BlackJack_Background;
             this.BackgroundImageLayout = ImageLayout.Stretch;
@@ -58,15 +59,15 @@ namespace VP_193182_ProektnaZadaca.Pictures
             playerHand = new PlayerHand();
             dealerHand = new DealerHand(false);
 
-            addAndDrawCard("player", false);
+            addAndDrawCard("player");
             Thread.Sleep(300);
 
-            addAndDrawCard("dealer", false);
+            addAndDrawCard("dealer");
 
-            addAndDrawCard("player", false);
+            addAndDrawCard("player");
             Thread.Sleep(300);
 
-            addAndDrawCard("dealer", true);
+            addAndDrawCard("dealer");
 
             dealState();
         }
@@ -74,8 +75,8 @@ namespace VP_193182_ProektnaZadaca.Pictures
         //NEW DEAL
         private void newDeal()
         {
-            lbDealerHand.Text = "Dealer's hand: 0";
-            lbPlayerHand.Text = "Player's hand: 0";
+            lbDealerHand.Visible = false;
+            lbPlayerHand.Visible = false;
             tbBet.Text = "Your bet: $0";
 
             bet = 0;
@@ -109,8 +110,11 @@ namespace VP_193182_ProektnaZadaca.Pictures
             handValueUpdate("player");
             if (playerHand.getTotalValue() > 21)
             {
-                MessageBox.Show("You bust, dealer wins!");
+                GameState gameState = new GameState("Lose");
+                gameState.ShowDialog();
                 newDeal();
+
+
             }
         }
 
@@ -148,24 +152,28 @@ namespace VP_193182_ProektnaZadaca.Pictures
         {
             if (playerHand.getTotalValue() == dealerHand.getTotalValue())
             {
-                MessageBox.Show("It's a draw. Nobody wins!");
+                GameState gameState = new GameState("Push");
+                gameState.ShowDialog();
                 balance += bet;
                 newDeal();
             }
             else if (dealerHand.getTotalValue() > 21)
             {
-                MessageBox.Show("The dealer busts, You win!");
+                GameState gameState = new GameState("Win");
+                gameState.ShowDialog();
                 balance += bet * 2;
                 newDeal();
             }
             else if (dealerHand.getTotalValue() > playerHand.getTotalValue())
             {
-                MessageBox.Show("The dealer has a higher score than you. The dealer wins!");
+                GameState gameState = new GameState("Lose");
+                gameState.ShowDialog();
                 newDeal();
             }
             else if (dealerHand.getTotalValue() < playerHand.getTotalValue())
             {
-                MessageBox.Show("You have a higher score than the dealer. You win!");
+                GameState gameState = new GameState("Win");
+                gameState.ShowDialog();
                 balance += bet * 2;
                 newDeal();
             }
@@ -190,11 +198,12 @@ namespace VP_193182_ProektnaZadaca.Pictures
 
             btnDouble.Enabled = false;
 
-            addAndDrawCard("player", false);
+            addAndDrawCard("player");
             Thread.Sleep(300);
             if (playerHand.getTotalValue() > 21)
             {
-                MessageBox.Show("You bust, dealer wins!");
+                GameState gameState = new GameState("Lose");
+                gameState.ShowDialog();
                 newDeal();
             }
             else
@@ -205,7 +214,7 @@ namespace VP_193182_ProektnaZadaca.Pictures
 
         //SUPPORTING FUNCTIONS
         //ADD AND DRAW CARD
-        private void addAndDrawCard(String playerOrDealer, bool flipped)
+        private void addAndDrawCard(String playerOrDealer)
         {
             Graphics g = this.CreateGraphics();
             Card card = deck.generateCard();
@@ -222,7 +231,7 @@ namespace VP_193182_ProektnaZadaca.Pictures
                 dealerHand.addCard(card);
                 handValueUpdate("dealer");
                 dealerX += 95;
-                if (flipped)
+                if (dealerHand.hand.Count == 2)
                 {
                     g.DrawImage(this.flipped, dealerX, dealerY, cardWidth, cardHeight);
                 }
@@ -230,6 +239,7 @@ namespace VP_193182_ProektnaZadaca.Pictures
                 {
                     g.DrawImage(card.image, dealerX, dealerY, cardWidth, cardHeight);
                 }
+                showCardValues();
                 Thread.Sleep(300);
             }
         }
@@ -241,22 +251,28 @@ namespace VP_193182_ProektnaZadaca.Pictures
 
             if (playerHand.getTotalValue() == 21)
             {
-                MessageBox.Show("Blackjack! You win!");
+                GameState gameState = new GameState("Blackjack win");
+                gameState.ShowDialog();
                 g.DrawImage(dealerHand.getCard(1).image, dealerX, dealerY, cardWidth, cardHeight);
+                Thread.Sleep(1000);
                 balance += bet + (bet * 0.5);
                 newDeal();
             }
             else if (dealerHand.Blackjack() && playerHand.getTotalValue() == 21)
             {
-                MessageBox.Show("Blackjack! You win!");
+                GameState gameState = new GameState("Blackjack win");
+                gameState.ShowDialog();
                 g.DrawImage(dealerHand.getCard(1).image, dealerX, dealerY, cardWidth, cardHeight);
+                Thread.Sleep(1000);
                 balance += bet + (bet * 0.5);
                 newDeal();
             }
             else if (dealerHand.Blackjack())
             {
-                MessageBox.Show("Blackjack! The dealer wins!");
+                GameState gameState = new GameState("Blackjack lose");
+                gameState.ShowDialog();
                 g.DrawImage(dealerHand.getCard(1).image, dealerX, dealerY, cardWidth, cardHeight);
+                Thread.Sleep(1000);
                 newDeal();
             }
         }
@@ -289,13 +305,14 @@ namespace VP_193182_ProektnaZadaca.Pictures
                 btnDouble.Enabled = false;
 
                 btnAllIn.Enabled = true;
-                pbChip5.Enabled = true;
-                pbChip10.Enabled = true;
-                pbChip25.Enabled = true;
-                pbChip50.Enabled = true;
-                pbChip100.Enabled = true;
-                pbChip500.Enabled = true;
-                pbChip1000.Enabled = true;
+                opbChip5.Enabled = true;
+                opbChip10.Enabled = true;
+                opbChip25.Enabled = true;
+                opbChip50.Enabled = true;
+                opbChip100.Enabled = true;
+                opbChip500.Enabled = true;
+                opbChip1000.Enabled = true;
+                opbChip2000.Enabled = true;
             }
             else
             {
@@ -304,18 +321,18 @@ namespace VP_193182_ProektnaZadaca.Pictures
                 btnDouble.Enabled = true;
 
                 btnAllIn.Enabled = false;
-                pbChip5.Enabled = false;
-                pbChip10.Enabled = false;
-                pbChip25.Enabled = false;
-                pbChip50.Enabled = false;
-                pbChip100.Enabled = false;
-                pbChip500.Enabled = false;
-                pbChip1000.Enabled = false;
+                opbChip5.Enabled = false;
+                opbChip10.Enabled = false;
+                opbChip25.Enabled = false;
+                opbChip50.Enabled = false;
+                opbChip100.Enabled = false;
+                opbChip500.Enabled = false;
+                opbChip1000.Enabled = false;
+                opbChip2000.Enabled = false;
             }
         }
 
         // CHIPS AND MONEY STATUS
-
         private void raiseBet(int value)
         {
             if (balance >= value)
@@ -343,7 +360,7 @@ namespace VP_193182_ProektnaZadaca.Pictures
             tbBet.Text = "Your bet: $" + bet.ToString();
         }
 
-        private void pbChip5_Click(object sender, EventArgs e)
+        private void opbChip5_Click(object sender, EventArgs e)
         {
             MouseEventArgs mouse = (MouseEventArgs)e;
             if (mouse.Button == MouseButtons.Left)
@@ -359,7 +376,7 @@ namespace VP_193182_ProektnaZadaca.Pictures
 
         }
 
-        private void pbChip10_Click(object sender, EventArgs e)
+        private void opbChip10_Click(object sender, EventArgs e)
         {
             MouseEventArgs mouse = (MouseEventArgs)e;
             if (mouse.Button == MouseButtons.Left)
@@ -373,7 +390,7 @@ namespace VP_193182_ProektnaZadaca.Pictures
             }
         }
 
-        private void pbChip25_Click(object sender, EventArgs e)
+        private void opbChip25_Click(object sender, EventArgs e)
         {
             MouseEventArgs mouse = (MouseEventArgs)e;
             if (mouse.Button == MouseButtons.Left)
@@ -387,7 +404,7 @@ namespace VP_193182_ProektnaZadaca.Pictures
             }
         }
 
-        private void pbChip50_Click(object sender, EventArgs e)
+        private void opbChip50_Click(object sender, EventArgs e)
         {
             MouseEventArgs mouse = (MouseEventArgs)e;
             if (mouse.Button == MouseButtons.Left)
@@ -401,7 +418,7 @@ namespace VP_193182_ProektnaZadaca.Pictures
             }
         }
 
-        private void pbChip100_Click(object sender, EventArgs e)
+        private void opbChip100_Click(object sender, EventArgs e)
         {
             MouseEventArgs mouse = (MouseEventArgs)e;
             if (mouse.Button == MouseButtons.Left)
@@ -415,7 +432,7 @@ namespace VP_193182_ProektnaZadaca.Pictures
             }
         }
 
-        private void pbChip500_Click(object sender, EventArgs e)
+        private void opbChip500_Click(object sender, EventArgs e)
         {
             MouseEventArgs mouse = (MouseEventArgs)e;
             if (mouse.Button == MouseButtons.Left)
@@ -428,15 +445,7 @@ namespace VP_193182_ProektnaZadaca.Pictures
                 lowerBet(500);
             }
         }
-
-        private void btnAllIn_Click(object sender, EventArgs e)
-        {
-            bet += balance;
-            balance = 0;
-            moneyStatus();
-        }
-
-        private void pbChip1000_Click(object sender, EventArgs e)
+        private void opbChip1000_Click(object sender, EventArgs e)
         {
             MouseEventArgs mouse = (MouseEventArgs)e;
             if (mouse.Button == MouseButtons.Left)
@@ -450,14 +459,41 @@ namespace VP_193182_ProektnaZadaca.Pictures
             }
         }
 
+        private void opbChip2000_Click(object sender, EventArgs e)
+        {
+            MouseEventArgs mouse = (MouseEventArgs)e;
+            if (mouse.Button == MouseButtons.Left)
+            {
+                raiseBet(2000);
+
+            }
+            else
+            {
+                lowerBet(2000);
+            }
+        }
+
+        private void ovalPictureBox1_Click(object sender, EventArgs e)
+        {
+            Info info = new Info();
+            info.ShowDialog();
+        }
+
+        private void btnAllIn_Click(object sender, EventArgs e)
+        {
+            bet += balance;
+            balance = 0;
+            moneyStatus();
+        }
+
         //CARD POSITION RESET
         private void cardPositionReset()
         {
-            playerX = 485;
-            playerY = 400;
+            playerX = 430;
+            playerY = 360;
 
             dealerX = -85;
-            dealerY = 250;
+            dealerY = 190;
         }
 
         //CLOSE GAME
@@ -478,6 +514,16 @@ namespace VP_193182_ProektnaZadaca.Pictures
             {
                 pbDealer.Image = Properties.Resources.BlackJack_Dealer_Man;
                 dealer = true;
+            }
+        }
+
+        //SHOWS LABEL WITH SCORE
+        private void showCardValues()
+        {
+            if (playerHand.hand.Count >= 2 && dealerHand.hand.Count >= 2)
+            {
+                lbPlayerHand.Visible = true;
+                lbDealerHand.Visible = true;
             }
         }
     }

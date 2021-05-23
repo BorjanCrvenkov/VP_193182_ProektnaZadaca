@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -48,11 +63,17 @@
   <ItemGroup>
     <Compile Include="Card.cs" />
     <Compile Include="Deck.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="GameState.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="GameState.Designer.cs">
+      <DependentUpon>GameState.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main menu.Designer.cs">
+      <DependentUpon>Main menu.cs</DependentUpon>
     </Compile>
     <Compile Include="Hand.cs" />
     <Compile Include="Info.cs">
@@ -67,10 +88,16 @@
     <Compile Include="BlackJack.Designer.cs">
       <DependentUpon>BlackJack.cs</DependentUpon>
     </Compile>
+    <Compile Include="OvalPicture.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="GameState.resx">
+      <DependentUpon>GameState.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main menu.resx">
+      <DependentUpon>Main menu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Info.resx">
       <DependentUpon>Info.cs</DependentUpon>
@@ -80,18 +107,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -105,19 +132,7 @@
     <None Include="Pictures\Form1_Cover.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Pictures\Info_BlackJack.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Pictures\Info_Dealers_Play.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Pictures\Info_Img.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Pictures\Info_The_Deal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Pictures\Info_The_Play.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Pictures\Chips\Chip1.png" />
@@ -410,11 +425,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Pictures\Cards\BlueCardFlipped.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Pictures\Cards\RedCardFlipped.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -430,6 +440,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Pictures\Blackjack_EndGame.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Arrow_left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Arrow_right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Info_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Blackjack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Push.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\You lose.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\You win.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
